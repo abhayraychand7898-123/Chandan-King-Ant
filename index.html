@@ -7,30 +7,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Orbitron', sans-serif; background: #050a10; color: #e0e0e0; display: flex; height: 100vh; overflow: hidden; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #050a10; color: #e0e0e0; display: flex; min-height: 100vh; flex-direction: row; }
         
-        /* Sidebar Navigation */
-        .sidebar { width: 250px; background: #0d1117; border-right: 2px solid #58a6ff; display: flex; flex-direction: column; padding: 20px; transition: 0.3s; }
-        .sidebar h2 { color: #58a6ff; font-size: 1.2rem; margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 2px; }
-        .nav-item { padding: 15px; margin: 10px 0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; transition: 0.3s; color: #8b949e; text-decoration: none; }
-        .nav-item:hover { background: #1c2128; color: #58a6ff; box-shadow: 0 0 10px #58a6ff; }
-        .nav-item i { margin-right: 15px; font-size: 1.2rem; }
-        .nav-item.active { background: #1c2128; color: #58a6ff; border-left: 4px solid #58a6ff; }
+        /* Sidebar Layout */
+        .sidebar { width: 250px; background: #0d1117; border-right: 2px solid #58a6ff; display: flex; flex-direction: column; padding: 20px; flex-shrink: 0; }
+        .sidebar h2 { color: #58a6ff; font-size: 1.2rem; margin-bottom: 30px; text-align: center; letter-spacing: 2px; }
+        .nav-item { padding: 12px; margin: 8px 0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; color: #8b949e; text-decoration: none; transition: 0.3s; }
+        .nav-item:hover, .nav-item.active { background: #1c2128; color: #58a6ff; border-left: 4px solid #58a6ff; }
+        .nav-item i { margin-right: 15px; width: 20px; text-align: center; }
 
-        /* Main Content Area */
-        .main-content { flex: 1; padding: 40px; overflow-y: auto; background: radial-gradient(circle at center, #0d1117 0%, #050a10 100%); }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid #30363d; padding-bottom: 20px; }
-        .status-badge { background: rgba(63, 185, 80, 0.1); color: #3fb950; padding: 5px 15px; border-radius: 20px; border: 1px solid #3fb950; font-size: 0.8rem; }
+        /* Main Content */
+        .main-content { flex: 1; padding: 30px; background: radial-gradient(circle at center, #0d1117 0%, #050a10 100%); width: 100%; }
+        .header { margin-bottom: 30px; border-bottom: 1px solid #30363d; padding-bottom: 15px; }
+        
+        /* Responsive Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .card { background: #161b22; border: 1px solid #30363d; padding: 20px; border-radius: 12px; text-align: center; }
+        .card .value { font-size: 1.5rem; font-weight: bold; color: #ffffff; margin-top: 10px; }
 
-        /* Dashboard Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: #161b22; border: 1px solid #30363d; padding: 25px; border-radius: 15px; text-align: center; transition: 0.4s; position: relative; overflow: hidden; }
-        .card:hover { transform: translateY(-10px); border-color: #58a6ff; box-shadow: 0 0 20px rgba(88, 166, 255, 0.2); }
-        .card h3 { font-size: 0.9rem; color: #8b949e; margin-bottom: 10px; }
-        .card .value { font-size: 2rem; font-weight: bold; color: #ffffff; }
+        /* Mobile Fix - THE KEY FOR ZERO ERROR */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 2px solid #58a6ff; padding: 15px; }
+            .sidebar h2 { margin-bottom: 15px; }
+            .nav-item { padding: 8px; font-size: 0.9rem; }
+            .main-content { padding: 15px; }
+        }
 
-        /* Universal Portal Effect */
-        .portal-circle { position: absolute; top: -50px; right: -50px; width: 100px; height: 100px; background: rgba(88, 166, 255, 0.1); border-radius: 50%; filter: blur(30px); }
+        /* Comm Portal */
+        .comm-portal { margin-top: 30px; background: #161b22; padding: 20px; border-radius: 12px; border: 1px solid #30363d; }
+        #chat-box { height: 150px; background: #0d1117; border-radius: 8px; padding: 10px; overflow-y: auto; margin-bottom: 15px; border: 1px solid #30363d; font-size: 0.85rem; }
     </style>
 </head>
 <body>
@@ -39,45 +45,5 @@
         <h2>EMPIRE HUB</h2>
         <a href="#" class="nav-item active"><i class="fas fa-home"></i> Dashboard</a>
         <a href="#" class="nav-item"><i class="fas fa-comments"></i> Comm-Portal</a>
-        <a href="#" class="nav-item"><i class="fas fa-microscope"></i> Research Galaxy</a>
-        <a href="#" class="nav-item"><i class="fas fa-shield-halved"></i> 11-Node Army</a>
-        <a href="#" class="nav-item"><i class="fas fa-dna"></i> Immortality Lab</a>
-        <div style="margin-top: auto; font-size: 0.7rem; color: #484f58; text-align: center;">Powered by Chandan-2</div>
-    </div>
-
-    <div class="main-content">
-        <div class="header">
-            <div>
-                <h1 style="font-size: 1.8rem; letter-spacing: 1px;">Universal Empire Command</h1>
-                <p style="color: #8b949e; font-size: 0.9rem;">Welcome back, Emperor Chandanant</p>
-            </div>
-            <div class="status-badge">● SYSTEM LIVE</div>
-        </div>
-
-        <div class="grid">
-            <div class="card">
-                <div class="portal-circle"></div>
-                <h3>TOTAL EMPIRE POWER</h3>
-                <div class="value">14.2 TH/s</div>
-            </div>
-            <div class="card">
-                <h3>ACTIVE NODES</h3>
-                <div class="value">11 Units</div>
-            </div>
-            <div class="card">
-                <h3>NETWORK SPEED</h3>
-                <div class="value">Unlimited 5G</div>
-            </div>
-        </div>
-
-        <div style="margin-top: 40px; background: #161b22; padding: 25px; border-radius: 15px; border: 1px solid #30363d;">
-            <h2 style="font-size: 1.2rem; margin-bottom: 20px; color: #58a6ff;"><i class="fas fa-broadcast-tower"></i> Universal Communications</h2>
-            <p style="color: #8b949e;">Waiting for transmission from Chandan-2 Quantum Model...</p>
-            <div style="margin-top: 20px; padding: 15px; background: #0d1117; border-radius: 8px; border-left: 4px solid #58a6ff;">
-                <strong>System Note:</strong> The multi-page portal system is being initialized. Soon you will communicate through this interface.
-            </div>
-        </div>
-    </div>
-
-</body>
-</html>
+        <a href="#" class="nav-item"><i class="fas fa-shield-halved"></i> 11
+            
