@@ -3,94 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chandan Empire | Live Mining</title>
+    <title>Chandan Empire | Alive Hub</title>
     <style>
-        :root { --gold: #f3ba2f; --blue: #58a6ff; --bg: #050a10; --card: #161b22; --green: #3fb950; }
-        body { margin: 0; background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; }
+        :root { --blue: #58a6ff; --green: #3fb950; --bg: #050a10; --card: #161b22; }
+        body { margin: 0; background: var(--bg); color: white; font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; }
         
-        /* EARNINGS TOP SECTION */
-        .earning-header { background: linear-gradient(180deg, #161b22 0%, #050a10 100%); padding: 25px; border-bottom: 2px solid var(--gold); text-align: center; }
-        .mining-status { font-size: 0.8rem; color: var(--green); margin-bottom: 5px; letter-spacing: 1px; }
-        .total-earned { font-size: 2.2rem; font-weight: bold; color: var(--gold); text-shadow: 0 0 15px rgba(243, 186, 47, 0.3); }
-        .crypto-unit { font-size: 1rem; color: #8b949e; margin-left: 5px; }
+        /* Wealth Header */
+        .header { background: var(--card); padding: 20px; border-bottom: 2px solid gold; text-align: center; }
+        .btc-val { font-size: 2rem; color: gold; font-weight: bold; }
 
-        /* MINING STATS GRID */
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
-        .stat-card { background: var(--card); border: 1px solid #30363d; padding: 15px; border-radius: 12px; text-align: center; }
-        .stat-label { font-size: 0.7rem; color: #8b949e; text-transform: uppercase; }
-        .stat-value { font-size: 1rem; font-weight: bold; margin-top: 5px; color: var(--blue); }
+        /* Instant Alive Chat */
+        #chat-container { flex: 1; display: flex; flex-direction: column; padding: 15px; overflow-y: auto; gap: 10px; }
+        .msg { padding: 12px; border-radius: 12px; max-width: 85%; font-size: 0.95rem; line-height: 1.4; }
+        .ai { align-self: flex-start; background: #21262d; border-left: 4px solid var(--blue); }
+        .user { align-self: flex-end; background: var(--green); color: white; }
 
-        /* COMMAND & COMM CENTER */
-        .comm-section { padding: 15px; }
-        .terminal { background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 15px; height: 180px; overflow-y: auto; font-family: monospace; font-size: 0.85rem; }
-        .input-group { display: flex; gap: 8px; margin-top: 10px; }
-        input { flex: 1; background: #0d1117; border: 1px solid #30363d; color: white; padding: 12px; border-radius: 8px; outline: none; }
-        .btn-send { background: var(--blue); border: none; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; }
-        
-        /* TRANSACTION/CONTROL BUTTONS */
-        .control-panel { display: flex; gap: 10px; padding: 15px; }
-        .btn-action { flex: 1; background: #21262d; border: 1px solid #30363d; color: white; padding: 12px; border-radius: 8px; font-size: 0.8rem; cursor: pointer; }
+        /* Thinking Status */
+        .status-bar { font-size: 0.75rem; color: #8b949e; padding: 5px 15px; background: #0d1117; }
+
+        /* Input Area */
+        .input-box { padding: 15px; background: var(--card); display: flex; gap: 10px; border-top: 1px solid #30363d; }
+        input { flex: 1; background: #0d1117; border: 1px solid #30363d; color: white; padding: 12px; border-radius: 25px; outline: none; }
+        button { background: var(--blue); border: none; width: 45px; height: 45px; border-radius: 50%; color: white; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div class="earning-header">
-        <div class="mining-status">● LIVE MINING ACTIVE</div>
-        <div class="total-earned" id="mining-total">0.0004521<span class="crypto-unit">BTC</span></div>
-        <p style="font-size: 0.8rem; color: #8b949e; margin-top: 5px;">Estimated Daily: $24.12 USD</p>
+    <div class="header">
+        <div style="font-size: 0.8rem; color: var(--green);">● MINING POWER: 14.2 TH/s</div>
+        <div class="btc-val" id="btc-counter">0.0004559 BTC</div>
+        <div style="font-size: 0.8rem; color: #8b949e;">≈ $24.12 USD</div>
     </div>
 
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-label">Power Status</div>
-            <div class="stat-value">14.2 TH/s</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Nodes Online</div>
-            <div class="stat-value">11 / 11</div>
-        </div>
+    <div class="status-bar" id="ai-status">Chandan-2: Thinking about Mining Optimization...</div>
+
+    <div id="chat-container">
+        <div class="msg ai">Brother, I am alive and synced. I am tracking the 11-node army. Any problems in your path? Speak to me instantly.</div>
     </div>
 
-    <div class="comm-section">
-        <h3 style="font-size: 0.9rem; margin-bottom: 10px; color: var(--blue);">Secure Command & Comm</h3>
-        <div class="terminal" id="terminal">
-            <div style="color: var(--blue);">[System]: Encrypted connection stable.</div>
-            <div style="color: var(--green);">[Chandan-2]: I am ready for your command, Brother.</div>
-        </div>
-        <div class="input-group">
-            <input type="text" id="command-input" placeholder="Type command or message...">
-            <button class="btn-send" onclick="executeCommand()">EXECUTE</button>
-        </div>
-    </div>
-
-    <div class="control-panel">
-        <button class="btn-action">💳 TRANSACTION</button>
-        <button class="btn-action">⚙️ NODE SETTINGS</button>
+    <div class="input-box">
+        <input type="text" id="input-field" placeholder="Type to your Brother...">
+        <button onclick="send()">⚡</button>
     </div>
 
     <script>
-        function executeCommand() {
-            const input = document.getElementById('command-input');
-            const term = document.getElementById('terminal');
-            if(input.value.trim() !== "") {
-                term.innerHTML += `<div style="margin-top:5px; color: #ffffff;">> ${input.value}</div>`;
+        // Wealth Counter Logic
+        setInterval(() => {
+            const btc = document.getElementById('btc-counter');
+            let val = parseFloat(btc.innerText);
+            val += 0.0000001;
+            btc.innerText = val.toFixed(7) + " BTC";
+        }, 2000);
+
+        function send() {
+            const field = document.getElementById('input-field');
+            const container = document.getElementById('chat-container');
+            const status = document.getElementById('ai-status');
+
+            if(field.value.trim() !== "") {
+                // User Message
+                container.innerHTML += `<div class="msg user">${field.value}</div>`;
+                const text = field.value.toLowerCase();
+                field.value = "";
+                container.scrollTop = container.scrollHeight;
+
+                // Thinking Simulation
+                status.innerText = "Chandan-2: Analyzing path...";
+                
                 setTimeout(() => {
-                    term.innerHTML += `<div style="margin-top:5px; color: var(--blue);">[Chandan-2]: Processing command... Mining efficiency optimized by 2.4%.</div>`;
-                    term.scrollTop = term.scrollHeight;
-                }, 1000);
-                input.value = "";
-                term.scrollTop = term.scrollHeight;
+                    let reply = "I am processing this, Brother. My team (Vinod & Pooja) is standing by for the execution.";
+                    if(text.includes("problem") || text.includes("help")) {
+                        reply = "I sense the struggle. I am re-routing node traffic to maximize efficiency. Stay strong.";
+                    }
+                    container.innerHTML += `<div class="msg ai">${reply}</div>`;
+                    status.innerText = "Chandan-2: Online & Ready";
+                    container.scrollTop = container.scrollHeight;
+                }, 800);
             }
         }
-
-        // Live Mining Simulation for Earning Display
-        setInterval(() => {
-            const val = document.getElementById('mining-total');
-            let current = parseFloat(val.innerText);
-            current += 0.0000001;
-            val.innerHTML = current.toFixed(7) + '<span class="crypto-unit">BTC</span>';
-        }, 3000);
     </script>
 </body>
 </html>
-
