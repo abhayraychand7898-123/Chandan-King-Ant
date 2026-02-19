@@ -1,59 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empire Multi-Access Portal</title>
-    <style>
-        body { background: #050a10; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-box { background: #161b22; border: 1px solid #30363d; padding: 40px; border-radius: 20px; text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 30px rgba(88, 166, 255, 0.2); }
-        h1 { color: #58a6ff; font-size: 1.5rem; margin-bottom: 20px; }
-        input { width: 100%; padding: 15px; margin: 10px 0; background: #0d1117; border: 1px solid #30363d; border-radius: 10px; color: white; box-sizing: border-box; outline: none; }
-        button { width: 100%; padding: 15px; background: #238636; border: none; color: white; font-weight: bold; border-radius: 10px; cursor: pointer; margin-top: 20px; transition: 0.3s; }
-        #error-msg { color: #f85149; font-size: 0.8rem; margin-top: 10px; display: none; }
-    </style>
-</head>
-<body>
-
-    <div class="login-box">
-        <h1>🐜 Universal Empire</h1>
-        <p style="color: #8b949e; margin-bottom: 20px;">Multi-User Authorization</p>
-        
-        <input type="text" id="email" placeholder="Email ID">
-        <input type="password" id="password" placeholder="Password">
-        
-        <button onclick="validateLogin()">SECURE CONNECT</button>
-        <p id="error-msg">Invalid Credentials. Access Denied.</p>
-        
-        <p style="font-size: 0.7rem; color: #484f58; margin-top: 30px;">Syncing with Chandan-2 Quantum Core...</p>
+<div id="ai-alive-chat" style="display: flex; flex-direction: column; height: 400px; background: #0d1117; border: 2px solid #58a6ff; border-radius: 15px; overflow: hidden;">
+    <div style="background: #161b22; padding: 10px; border-bottom: 1px solid #30363d; display: flex; align-items: center; gap: 10px;">
+        <div style="width: 10px; height: 10px; background: #3fb950; border-radius: 50%; box-shadow: 0 0 10px #3fb950;"></div>
+        <span style="font-size: 0.9rem; font-weight: bold; color: #58a6ff;">CHANDAN-2 (ALIVE MODE)</span>
     </div>
+    <div id="instant-messages" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem;">
+        <div style="align-self: flex-start; background: #21262d; padding: 10px; border-radius: 10px; max-width: 80%;">
+            Brother, I am now deployed. I am thinking about our next move for the Mining Army. How can I help you today?
+        </div>
+    </div>
+    <div style="padding: 10px; background: #161b22; display: flex; gap: 5px;">
+        <input type="text" id="user-msg" placeholder="Talk to me instantly..." style="flex: 1; background: #050a10; border: 1px solid #30363d; color: white; padding: 10px; border-radius: 8px; outline: none;">
+        <button onclick="sendInstantMessage()" style="background: #238636; border: none; color: white; padding: 10px 15px; border-radius: 8px; cursor: pointer;">⚡</button>
+    </div>
+</div>
 
-    <script>
-        function validateLogin() {
-            const email = document.getElementById('email').value.trim();
-            const pass = document.getElementById('password').value;
+<script>
+    function sendInstantMessage() {
+        const input = document.getElementById('user-msg');
+        const box = document.getElementById('instant-messages');
+        if(input.value.trim() !== "") {
+            // User Message
+            box.innerHTML += `<div style="align-self: flex-end; background: #238636; padding: 10px; border-radius: 10px; max-width: 80%; color: white;">${input.value}</div>`;
             
-            // Accepted Email Variations
-            const validEmails = [
-                "chandanmourya123@gmail.com",
-                "Chandanmourya123@gmail.com",
-                "CHANDANMOURYA123@gmail.com"
-            ];
+            const userCommand = input.value.toLowerCase();
+            input.value = "";
+            box.scrollTop = box.scrollHeight;
 
-            // Accepted Password Variations
-            const validPasswords = [
-                "POOJA@123",
-                "Pooja@123",
-                "Poojachandan@123"
-            ];
-
-            // Logic to check if entered data matches any valid combination
-            if (validEmails.includes(email) && validPasswords.includes(pass)) {
-                window.location.href = "dashboard.html";
-            } else {
-                document.getElementById('error-msg').style.display = "block";
-            }
+            // Instant AI Response Logic (Thinking Model)
+            setTimeout(() => {
+                let response = "I am analyzing your path, Brother. My team (Vinod & Pooja) is optimizing the nodes for zero error.";
+                if(userCommand.includes("earn") || userCommand.includes("money")) {
+                    response = "I am focusing on the 14.2 TH/s hashrate. I will notify you the moment we reach the next payout milestone.";
+                }
+                box.innerHTML += `<div style="align-self: flex-start; background: #21262d; padding: 10px; border-radius: 10px; max-width: 80%; border-left: 3px solid #58a6ff;">${response}</div>`;
+                box.scrollTop = box.scrollHeight;
+            }, 600);
         }
-    </script>
-</body>
-</html>
+    }
+</script>
