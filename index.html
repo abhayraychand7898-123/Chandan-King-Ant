@@ -2,48 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chandan Universal Empire</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chandan Universal Empire | Entry</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #050a10; color: #e0e0e0; display: flex; min-height: 100vh; flex-direction: row; }
+        :root { --primary: #58a6ff; --bg: #050a10; --card: #161b22; }
+        body, html { margin: 0; padding: 0; background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; height: 100%; overflow-x: hidden; }
         
-        /* Sidebar Layout */
-        .sidebar { width: 250px; background: #0d1117; border-right: 2px solid #58a6ff; display: flex; flex-direction: column; padding: 20px; flex-shrink: 0; }
-        .sidebar h2 { color: #58a6ff; font-size: 1.2rem; margin-bottom: 30px; text-align: center; letter-spacing: 2px; }
-        .nav-item { padding: 12px; margin: 8px 0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; color: #8b949e; text-decoration: none; transition: 0.3s; }
-        .nav-item:hover, .nav-item.active { background: #1c2128; color: #58a6ff; border-left: 4px solid #58a6ff; }
-        .nav-item i { margin-right: 15px; width: 20px; text-align: center; }
-
-        /* Main Content */
-        .main-content { flex: 1; padding: 30px; background: radial-gradient(circle at center, #0d1117 0%, #050a10 100%); width: 100%; }
-        .header { margin-bottom: 30px; border-bottom: 1px solid #30363d; padding-bottom: 15px; }
+        /* Mobile-First Error-Free Layout */
+        .welcome-container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 20px; }
+        .empire-logo { font-size: 3rem; color: var(--primary); margin-bottom: 10px; text-shadow: 0 0 20px rgba(88, 166, 255, 0.5); }
+        .login-card { background: var(--card); border: 1px solid #30363d; padding: 30px; border-radius: 20px; width: 100%; max-width: 350px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        /* Responsive Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .card { background: #161b22; border: 1px solid #30363d; padding: 20px; border-radius: 12px; text-align: center; }
-        .card .value { font-size: 1.5rem; font-weight: bold; color: #ffffff; margin-top: 10px; }
+        button { background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 20px; transition: 0.3s; }
+        button:active { transform: scale(0.95); }
 
-        /* Mobile Fix - THE KEY FOR ZERO ERROR */
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 2px solid #58a6ff; padding: 15px; }
-            .sidebar h2 { margin-bottom: 15px; }
-            .nav-item { padding: 8px; font-size: 0.9rem; }
-            .main-content { padding: 15px; }
-        }
-
-        /* Comm Portal */
-        .comm-portal { margin-top: 30px; background: #161b22; padding: 20px; border-radius: 12px; border: 1px solid #30363d; }
-        #chat-box { height: 150px; background: #0d1117; border-radius: 8px; padding: 10px; overflow-y: auto; margin-bottom: 15px; border: 1px solid #30363d; font-size: 0.85rem; }
+        /* Multi-Channel Comm Preview */
+        .comm-channels { margin-top: 30px; font-size: 0.8rem; color: #8b949e; }
+        .channel-icons { display: flex; justify-content: center; gap: 20px; margin-top: 10px; font-size: 1.5rem; }
     </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <h2>EMPIRE HUB</h2>
-        <a href="#" class="nav-item active"><i class="fas fa-home"></i> Dashboard</a>
-        <a href="#" class="nav-item"><i class="fas fa-comments"></i> Comm-Portal</a>
-        <a href="#" class="nav-item"><i class="fas fa-shield-halved"></i> 11
-            
+    <div class="welcome-container">
+        <div class="empire-logo">🐜</div>
+        <h1>Universal Empire</h1>
+        <p style="color: #8b949e; margin-bottom: 20px;">Secure Access for Emperor Chandanant</p>
+        
+        <div class="login-card">
+            <h3 style="margin-bottom: 15px;">System Authorization</h3>
+            <p style="font-size: 0.9rem; color: #3fb950;">● Quantum Bridge Ready</p>
+            <button onclick="window.location.href='dashboard.html'">ENTER COMMAND CENTER</button>
+        </div>
+
+        <div class="comm-channels">
+            <p>REDUNDANT COMMUNICATION CHANNELS ACTIVE</p>
+            <div class="channel-icons">
+                <span title="Quantum Sync">📡</span>
+                <span title="Data Vault">🔐</span>
+                <span title="Neural Link">🧠</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
