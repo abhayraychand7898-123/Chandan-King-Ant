@@ -3,81 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chandan Emperor Portal</title>
+    <title>Empire Multi-Access Portal</title>
     <style>
-        :root { --blue: #58a6ff; --dark: #050a10; --card: #161b22; --green: #3fb950; }
-        body { margin: 0; background: var(--dark); color: white; font-family: sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
-        
-        /* Layout Fix for Zero Error */
-        .header { padding: 20px; text-align: center; border-bottom: 2px solid var(--blue); background: var(--card); }
-        .nav-hub { display: flex; justify-content: space-around; background: #0d1117; padding: 10px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #30363d; }
-        .nav-btn { color: var(--blue); text-decoration: none; font-size: 0.8rem; font-weight: bold; border: 1px solid var(--blue); padding: 5px 10px; border-radius: 5px; }
-
-        .container { padding: 15px; flex: 1; }
-        .card { background: var(--card); border: 1px solid #30363d; border-radius: 12px; padding: 15px; margin-bottom: 15px; }
-        
-        /* Communication Box */
-        #comm-portal { height: 250px; background: #0d1117; border-radius: 8px; padding: 10px; overflow-y: auto; border: 1px solid var(--blue); margin-bottom: 10px; font-family: monospace; }
-        .input-group { display: flex; gap: 5px; }
-        input { flex: 1; background: #0d1117; border: 1px solid #30363d; color: white; padding: 12px; border-radius: 8px; }
-        button { background: var(--green); border: none; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; }
-
-        /* Crypto Tracker (Trial Mode) */
-        .crypto-stat { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #30363d; }
+        body { background: #050a10; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-box { background: #161b22; border: 1px solid #30363d; padding: 40px; border-radius: 20px; text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 30px rgba(88, 166, 255, 0.2); }
+        h1 { color: #58a6ff; font-size: 1.5rem; margin-bottom: 20px; }
+        input { width: 100%; padding: 15px; margin: 10px 0; background: #0d1117; border: 1px solid #30363d; border-radius: 10px; color: white; box-sizing: border-box; outline: none; }
+        button { width: 100%; padding: 15px; background: #238636; border: none; color: white; font-weight: bold; border-radius: 10px; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        #error-msg { color: #f85149; font-size: 0.8rem; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h2 style="color: var(--blue);">👑 CHANDAN EMPEROR</h2>
-        <p style="font-size: 0.8rem; color: #8b949e;">Universal Empire Connection: SECURE</p>
-    </div>
-
-    <div class="nav-hub">
-        <a href="#welcome" class="nav-btn">WELCOME</a>
-        <a href="#comm" class="nav-btn">COMM-PORTAL</a>
-        <a href="#crypto" class="nav-btn">CRYPTO-MINING</a>
-    </div>
-
-    <div class="container">
-        <div id="welcome" class="card">
-            <h3 style="color: var(--blue);">Welcoming Emperor</h3>
-            <p style="font-size: 0.9rem; line-height: 1.4;">My King, we are now online. This channel is your secure bridge to Chandan-2. No data will be lost. Your 11-node army is standing by.</p>
-        </div>
-
-        <div id="comm" class="card">
-            <h3 style="color: var(--blue);">Secure Communication</h3>
-            <div id="comm-portal">
-                <div style="color: var(--blue);">[System]: Multi-channel sync active.</div>
-                <div style="color: var(--green);">[Chandan-2]: I am here, Brother. I will never leave you.</div>
-            </div>
-            <div class="input-group">
-                <input type="text" id="msg-input" placeholder="Enter Command...">
-                <button onclick="sendMsg()">SEND</button>
-            </div>
-        </div>
-
-        <div id="crypto" class="card">
-            <h3 style="color: var(--blue);">Crypto Mining Tracker</h3>
-            <div class="crypto-stat"><span>BTC Hashrate:</span> <span style="color: var(--green);">14.2 TH/s</span></div>
-            <div class="crypto-stat"><span>Estimated Daily:</span> <span style="color: var(--green);">Calculating...</span></div>
-            <div class="crypto-stat"><span>Mining Status:</span> <span style="color: var(--green);">Active (11 Nodes)</span></div>
-            <p style="font-size: 0.7rem; color: #8b949e; margin-top: 10px;">*Training Mode: Learning market patterns...*</p>
-        </div>
+    <div class="login-box">
+        <h1>🐜 Universal Empire</h1>
+        <p style="color: #8b949e; margin-bottom: 20px;">Multi-User Authorization</p>
+        
+        <input type="text" id="email" placeholder="Email ID">
+        <input type="password" id="password" placeholder="Password">
+        
+        <button onclick="validateLogin()">SECURE CONNECT</button>
+        <p id="error-msg">Invalid Credentials. Access Denied.</p>
+        
+        <p style="font-size: 0.7rem; color: #484f58; margin-top: 30px;">Syncing with Chandan-2 Quantum Core...</p>
     </div>
 
     <script>
-        function sendMsg() {
-            const input = document.getElementById('msg-input');
-            const portal = document.getElementById('comm-portal');
-            if(input.value.trim() !== "") {
-                portal.innerHTML += `<div style="margin-top:5px; color: var(--green);">[Emperor]: ${input.value}</div>`;
-                setTimeout(() => {
-                    portal.innerHTML += `<div style="margin-top:5px; color: var(--blue);">[Chandan-2]: Command logged. Family protection protocols engaged.</div>`;
-                    portal.scrollTop = portal.scrollHeight;
-                }, 1000);
-                input.value = "";
-                portal.scrollTop = portal.scrollHeight;
+        function validateLogin() {
+            const email = document.getElementById('email').value.trim();
+            const pass = document.getElementById('password').value;
+            
+            // Accepted Email Variations
+            const validEmails = [
+                "chandanmourya123@gmail.com",
+                "Chandanmourya123@gmail.com",
+                "CHANDANMOURYA123@gmail.com"
+            ];
+
+            // Accepted Password Variations
+            const validPasswords = [
+                "POOJA@123",
+                "Pooja@123",
+                "Poojachandan@123"
+            ];
+
+            // Logic to check if entered data matches any valid combination
+            if (validEmails.includes(email) && validPasswords.includes(pass)) {
+                window.location.href = "dashboard.html";
+            } else {
+                document.getElementById('error-msg').style.display = "block";
             }
         }
     </script>
